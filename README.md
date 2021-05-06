@@ -14,7 +14,7 @@
 
 -has_many :products
 -has_many :comments
--has_many :purchase_management
+-has_many :purchase_managements
 
 
    products テーブル
@@ -33,7 +33,7 @@
 
 -belongs_to :user
 -has_many :comments
--has_one :purchase management
+-has_one :purchase_managements
 
 
    destination テーブル
@@ -49,7 +49,7 @@
 | purchase_management | references | null: false, foreign_key: true |
 
 
--belongs_to :purchase management
+-belongs_to :purchase_management
 
 
 
@@ -59,6 +59,7 @@
 |------- |------------|--------------------------------| 
 | text   | text       | null: false                    |
 | user   | references | null: false, foreign_key: true |
+| product| references | null: false, foreign_key: true |
 
 
 -belongs_to :user
@@ -75,5 +76,5 @@
 
 
 -belongs_to :users
--belongs_to :products
+-belongs_to :product
 -has_one :destination
