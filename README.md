@@ -1,24 +1,64 @@
-# README
+  users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|Column           |Type   |Options |
+|-----------------|-------|--------|
+| nickname        | string|NOT NULL|
+| email           | string|NOT NULL|
+| password        | string|NOT NULL|
+| password_confirm| string|NOT NULL|
+| last_name       | string|NOT NULL|
+| first_name      | string|NOT NULL|
+| last_name_kana  | string|NOT NULL|
+| first_name_kana | string|NOT NULL|
+| birthday        | date  |NOT NULL|
 
-Things you may want to cover:
 
-* Ruby version
+-has_many :products
+-has_many :comments
 
-* System dependencies
 
-* Configuration
+   products テーブル
 
-* Database creation
+|Column        |Type               |Options   |
+|--------------|-------------------|----------| 
+| product_name | string            | NOT NULL |
+| description  | string            | NOT NULL |
+| category     | string            | NOT NULL |
+| status       | string            | NOT NULL |
+| shipping_cost| string            | NOT NULL |
+| area         | string            | NOT NULL |
+| shipping_days| string            | NOT NULL |
+| price        | string            | NOT NULL |
+| profit       | string            | NOT NULL |
+| image        | ActiveStorageで実装|----------|
+| user         | references        | null: false, foreign_key: true |
 
-* Database initialization
+-belongs_to :user
+-has_many :comments
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+   destination テーブル
 
-* Deployment instructions
+|Column        |Type    |Options   |
+|--------------|--------|----------| 
+| postal_code  | string | NOT NULL |
+| prefecture   | string | NOT NULL |
+| city         | string | NOT NULL |
+| address      | string | NOT NULL |
+| building     | string |----------|
+| phone_number | string | NOT NULL |
 
-* ...
+
+-belongs_to :user
+
+
+   comments テーブル
+
+|Column |Type        |Options                         |
+|-------|------------|--------------------------------| 
+| text  | text       |NOT NULL                        |
+| user  | references | null: false, foreign_key: true |
+
+
+-belongs_to :user
+-belongs_to :product
