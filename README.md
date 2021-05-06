@@ -33,7 +33,7 @@
 
 -belongs_to :user
 -has_many :comments
--has_one :purchase_managements
+-has_one :purchase_management
 
 
    destination テーブル
@@ -75,6 +75,6 @@
 
 
 
--belongs_to :users
+-belongs_to :user
 -belongs_to :product
 -has_one :destination
