@@ -1,15 +1,15 @@
   users テーブル
 
-|Column             |Type    | Options  |
-|-----------------  |------- |--------  |
-| nickname          | string | NOT NULL |
-| email             | string | NOT NULL, unique: true|
-| encrypted_password| string | NOT NULL |
-| last_name         | string | NOT NULL |
-| first_name        | string | NOT NULL |
-| last_name_kana    | string | NOT NULL |
-| first_name_kana   | string | NOT NULL |
-| birthday          | date   | NOT NULL |
+|Column             |Type    | Options     |
+|-----------------  |------- |-------------|
+| nickname          | string | null: false |
+| email             | string | null: false, unique: true|
+| encrypted_password| string | null: false |
+| last_name         | string | null: false |
+| first_name        | string | null: false |
+| last_name_kana    | string | null: false |
+| first_name_kana   | string | null: false |
+| birthday          | date   | null: false |
 
 
 -has_many :products
@@ -18,17 +18,17 @@
 
    products テーブル
 
-|Column           |Type               |Options   |
-|-----------------|-------------------|----------| 
-| product_name    | string            | NOT NULL |
-| description     | string            | NOT NULL |
-| price           | string            | NOT NULL |
-| status          | string            | NOT NULL |
-| shipping_charges| string            | NOT NULL |
-| shipping_area   | string            | NOT NULL |
-| shipping_days   | string            | NOT NULL |
-| category        | string            | NOT NULL |
-| user_id         | integer           | NOT NULL, foreign_key: true |
+|Column               |Type               |Options   |
+|---------------------|-------------------|----------| 
+| product_name        | string            | null: false |
+| description         | text              | null: false |
+| price               | data              | null: false |
+| status_id           | integer           | null: false |
+| shipping_charges_id | integer           | null: false |
+| shipping_area_id    | integer           | null: false |
+| shipping_days_id    | integer           | null: false |
+| category_id         | integer           | null: false |
+| user_id             | references        | null: false, foreign_key: true |
 
 -belongs_to :user
 -has_many :comments
@@ -36,14 +36,15 @@
 
    destination テーブル
 
-|Column        |Type    |Options   |
-|--------------|--------|----------| 
-| postal_code  | string | NOT NULL |
-| prefecture   | string | NOT NULL |
-| city         | string | NOT NULL |
-| address      | string | NOT NULL |
-| building     | string |----------|
-| phone_number | string | NOT NULL |
+|Column        |Type    |Options      |
+|--------------|--------|-------------| 
+| postal_code  | string | null: false |
+| prefecture_id| integer| null: false |
+| city         | string | null: false |
+| address      | string | null: false |
+| building     | string |-------------|
+| phone_number | string | null: false |
+| purchase_management_id | references | null: false, foreign_key: true |
 
 
 -belongs_to :user
@@ -52,10 +53,10 @@
 
    comments テーブル
 
-|Column |Type        |Options                         |
-|-------|------------|--------------------------------| 
-| text  | text       |NOT NULL                        |
-| user  | references | null: false, foreign_key: true |
+|Column  |Type        |Options                         |
+|------- |------------|--------------------------------| 
+| text   | text       | null: false                    |
+| user_id| references | null: false, foreign_key: true |
 
 
 -belongs_to :user
@@ -64,7 +65,7 @@
 
    purchase management テーブル
 
-|Column      |Type     |Options                      |
-|------------|---------|-----------------------------| 
-| user_id    | integer | NOT NULL, foreign_key: true  |
-| product_id | integer | NOT NULL, foreign_key: true |
+|Column      |Type        |Options                         |
+|------------|------------|--------------------------------| 
+| user_id    | references | null: false, foreign_key: true |
+| product_id | references | null: false, foreign_key: true |
