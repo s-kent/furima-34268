@@ -14,14 +14,14 @@
 
 -has_many :products
 -has_many :comments
--belongs_to :purchase_management
+-has_many :purchase_management
 
 
    products テーブル
 
 |Column               |Type               |Options   |
 |---------------------|-------------------|----------| 
-| product_name        | string            | null: false |
+| name                | string            | null: false |
 | description         | text              | null: false |
 | price               | integer           | null: false |
 | status_id           | integer           | null: false |
@@ -33,7 +33,7 @@
 
 -belongs_to :user
 -has_many :comments
--belongs_to :purchase management
+-has_one :purchase management
 
 
    destination テーブル
@@ -76,4 +76,4 @@
 
 -belongs_to :users
 -belongs_to :products
--belongs_to :destination
+-has_one :destination
