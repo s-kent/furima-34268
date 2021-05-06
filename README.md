@@ -28,7 +28,7 @@
 | shipping_area_id    | integer           | null: false |
 | shipping_days_id    | integer           | null: false |
 | category_id         | integer           | null: false |
-| user_id             | references        | null: false, foreign_key: true |
+| user                | references        | null: false, foreign_key: true |
 
 -belongs_to :user
 -has_many :comments
@@ -44,10 +44,10 @@
 | address      | string | null: false |
 | building     | string |-------------|
 | phone_number | string | null: false |
-| purchase_management_id | references | null: false, foreign_key: true |
+| purchase_management | references | null: false, foreign_key: true |
 
 
--belongs_to :user
+-belongs_to :purchase management
 
 
 
@@ -56,7 +56,7 @@
 |Column  |Type        |Options                         |
 |------- |------------|--------------------------------| 
 | text   | text       | null: false                    |
-| user_id| references | null: false, foreign_key: true |
+| user   | references | null: false, foreign_key: true |
 
 
 -belongs_to :user
@@ -65,7 +65,10 @@
 
    purchase management テーブル
 
-|Column      |Type        |Options                         |
-|------------|------------|--------------------------------| 
-| user_id    | references | null: false, foreign_key: true |
-| product_id | references | null: false, foreign_key: true |
+|Column   |Type        |Options                         |
+|---------|------------|--------------------------------| 
+| user    | references | null: false, foreign_key: true |
+| product | references | null: false, foreign_key: true |
+
+-has_many :users
+-has_many :products
