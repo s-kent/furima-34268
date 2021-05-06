@@ -14,6 +14,7 @@
 
 -has_many :products
 -has_many :comments
+-belongs_to :purchase_management
 
 
    products テーブル
@@ -22,16 +23,17 @@
 |---------------------|-------------------|----------| 
 | product_name        | string            | null: false |
 | description         | text              | null: false |
-| price               | data              | null: false |
+| price               | integer           | null: false |
 | status_id           | integer           | null: false |
 | shipping_charges_id | integer           | null: false |
-| shipping_area_id    | integer           | null: false |
+| prefecture_id       | integer           | null: false |
 | shipping_days_id    | integer           | null: false |
 | category_id         | integer           | null: false |
 | user                | references        | null: false, foreign_key: true |
 
 -belongs_to :user
 -has_many :comments
+-belongs_to :purchase management
 
 
    destination テーブル
@@ -70,5 +72,8 @@
 | user    | references | null: false, foreign_key: true |
 | product | references | null: false, foreign_key: true |
 
--has_many :users
--has_many :products
+
+
+-belongs_to :users
+-belongs_to :products
+-belongs_to :destination
