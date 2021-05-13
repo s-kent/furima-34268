@@ -23,7 +23,4 @@ class Product < ApplicationRecord
     validates :shipping_days_id
     validates :category_id
   end
-  
-  validates :price, numericality: true
-
 end
