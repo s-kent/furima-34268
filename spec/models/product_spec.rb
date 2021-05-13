@@ -53,7 +53,7 @@ RSpec.describe Product, type: :model do
       it 'priceが空では出品できない' do
         @product.price = ''
         @product.valid?
-        expect(@product.errors.full_messages).to include("Price is not a number")
+        expect(@product.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが全角数字では出品できない' do
         @product.price = '１１１１'
