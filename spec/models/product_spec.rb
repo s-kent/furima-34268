@@ -70,12 +70,12 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is not a number")
       end
-      it 'priceが299以下ではでは出品できない' do
+      it 'priceが299以下では出品できない' do
         @product.price = '299'
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is not included in the list")
       end
-      it 'priceが10000000以上ではでは出品できない' do
+      it 'priceが10000000以上では出品できない' do
         @product.price = '10000000'
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is not included in the list")

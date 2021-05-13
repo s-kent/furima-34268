@@ -13,10 +13,8 @@ class Product < ApplicationRecord
     validates :name
     validates :description
     validates :image
-    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ } 
+    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }, numericality: true
   end
-
-  #validates :price, inclusion: { in: 300..9_999_999 }, numericality: { with: /\A[0-9]+\z/ } 
 
   with_options numericality: { other_than: 1 } do
     validates :status_id
