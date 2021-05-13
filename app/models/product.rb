@@ -13,14 +13,19 @@ class Product < ApplicationRecord
     validates :name
     validates :description
     validates :image
-    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
+    validates :price
   end
 
-  validates :status_id, numericality: { other_than: 1 }
-  validates :shipping_charges_id, numericality: { other_than: 1 }
-  validates :prefecture_id, numericality: { other_than: 1 }
-  validates :shipping_days_id, numericality: { other_than: 1 }
-  validates :category_id, numericality: { other_than: 1 }
+  validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ } 
+
+  with_options numericality: { other_than: 1 } do
+    validates :status_id
+    validates :shipping_charges_id
+    validates :prefecture_id
+    validates :shipping_days_id
+    validates :category_id
+  end
+  
   validates :price, numericality: true
 
 end
