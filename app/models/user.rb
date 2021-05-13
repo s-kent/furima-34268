@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #has_many :products
+  has_many :products
   #has_many :comments
   #has_many :purchase_managements
 
@@ -18,7 +18,7 @@ class User < ApplicationRecord
       validates :last_name
     end
   
-    with_options format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ } do
+    with_options format: { with: /\A[\p{katakana}ー－&&[^ -~｡-ﾟ]]+\z/ } do
       validates :first_name_kana
       validates :last_name_kana
     end
