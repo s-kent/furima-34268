@@ -52,20 +52,6 @@
 -belongs_to :purchase_management
 
 
-
-   comments テーブル
-
-|Column  |Type        |Options                         |
-|------- |------------|--------------------------------| 
-| text   | text       | null: false                    |
-| user   | references | null: false, foreign_key: true |
-| product| references | null: false, foreign_key: true |
-
-
--belongs_to :user
--belongs_to :product
-
-
    order テーブル
 
 |Column   |Type        |Options                         |
@@ -78,3 +64,16 @@
 -belongs_to :user
 -belongs_to :product
 -has_one :destination
+
+
+   comments テーブル
+
+|Column  |Type        |Options                         |
+|------- |------------|--------------------------------| 
+| text   | text       | null: false                    |
+| user   | references | null: false, foreign_key: true |
+| product| references | null: false, foreign_key: true |
+
+
+-belongs_to :user
+-belongs_to :product
