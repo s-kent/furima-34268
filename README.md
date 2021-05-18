@@ -36,7 +36,7 @@
 -has_one :purchase_management
 
 
-   destination テーブル
+   address テーブル
 
 |Column        |Type    |Options      |
 |--------------|--------|-------------| 
@@ -66,7 +66,7 @@
 -belongs_to :product
 
 
-   purchase management テーブル
+   order テーブル
 
 |Column   |Type        |Options                         |
 |---------|------------|--------------------------------| 
