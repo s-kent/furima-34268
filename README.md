@@ -36,7 +36,7 @@
 -has_one :purchase_management
 
 
-   address テーブル
+   destination テーブル
 
 |Column        |Type    |Options      |
 |--------------|--------|-------------| 
@@ -46,10 +46,10 @@
 | address      | string | null: false |
 | building     | string |-------------|
 | phone_number | string | null: false |
-| purchase_management | references | null: false, foreign_key: true |
+| order        | references | null:false, foreign_key: true |
 
 
--belongs_to :purchase_management
+-belongs_to :order
 
 
    order テーブル
