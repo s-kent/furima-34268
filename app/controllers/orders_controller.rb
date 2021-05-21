@@ -1,13 +1,13 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_product, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
 
   def index
-    @product = Product.find(params[:product_id])
     @order_destination = OrderDestination.new
   end
 
   def create
-    @product = Product.find(params[:product_id])
     @order_destination = OrderDestination.new(order_params)
     if @order_destination.valid?
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
@@ -24,6 +24,16 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_product
+    @product = Product.find(params[:product_id])
+  end
+
+  def move_to_index
+    if current_user.id == @product.user_id
+      redirect_to root_path
+    end
+  end
 
   def order_params
     params.require(:order_destination).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, product_id: params[:product_id], token: params[:token])
