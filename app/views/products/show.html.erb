@@ -33,7 +33,9 @@
         <%= link_to "削除", product_path, method: :delete, class:"item-destroy" %>
       <% else %>
       <%# 商品が売れていない場合はこちらを表示しましょう %>
-        <%= link_to "購入画面に進む", product_orders_path(@product.id) ,class:"item-red-btn"%>
+        <% unless @product.order.present? %>
+          <%= link_to "購入画面に進む", product_orders_path(@product.id) ,class:"item-red-btn"%>
+        <% end %>
       <% end %>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
     <% end %>
