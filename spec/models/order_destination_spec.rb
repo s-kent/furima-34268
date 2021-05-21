@@ -4,10 +4,11 @@ RSpec.describe OrderDestination, type: :model do
     user = FactoryBot.create(:user)
     product = FactoryBot.create(:product)
     @order_destination = FactoryBot.build(:order_destination, user_id: user.id, product_id: product.id)
+    sleep(1)
   end
   describe '商品購入機能' do
     context '商品購入できるとき' do
-      it '全ての値が正しく入力されていれば購入できる' do
+      it '全ての値が存在していれば購入できる' do
         expect(@order_destination).to be_valid
       end
     end
@@ -47,11 +48,16 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("Phone number can't be blank")
       end
-      #it 'phone_numberが11桁以上では購入できない' do
-        #@order_destination.phone_number = '000000000000'
-        #@order_destination.valid?
-        #expect(@order_destination.errors.full_messages).to include("Phone number is invalid")
-      #end
+      it 'phone_numberが11桁以上では購入できない' do
+        @order_destination.phone_number = '000000000000'
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'tokenが空では登録できない' do
+        @order_destination.token = nil
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
