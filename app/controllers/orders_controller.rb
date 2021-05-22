@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   def create
     @order_destination = OrderDestination.new(order_params)
     if @order_destination.valid?
-      payjp
+      pay_product
       @order_destination.save
       redirect_to root_path
     else
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     params.require(:order_destination).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, product_id: params[:product_id], token: params[:token])
   end
 
-  def payjp
+  def pay_product
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
         amount: @product.price,
