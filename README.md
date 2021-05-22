@@ -33,7 +33,7 @@
 
 -belongs_to :user
 -has_many :comments
--has_one :purchase_management
+-has_one :order
 
 
    destination テーブル
@@ -46,11 +46,24 @@
 | address      | string | null: false |
 | building     | string |-------------|
 | phone_number | string | null: false |
-| purchase_management | references | null: false, foreign_key: true |
+| order        | references | null:false, foreign_key: true |
 
 
--belongs_to :purchase_management
+-belongs_to :order
 
+
+   order テーブル
+
+|Column   |Type        |Options                         |
+|---------|------------|--------------------------------| 
+| user    | references | null: false, foreign_key: true |
+| product | references | null: false, foreign_key: true |
+
+
+
+-belongs_to :user
+-belongs_to :product
+-has_one :destination
 
 
    comments テーブル
@@ -64,17 +77,3 @@
 
 -belongs_to :user
 -belongs_to :product
-
-
-   purchase management テーブル
-
-|Column   |Type        |Options                         |
-|---------|------------|--------------------------------| 
-| user    | references | null: false, foreign_key: true |
-| product | references | null: false, foreign_key: true |
-
-
-
--belongs_to :user
--belongs_to :product
--has_one :destination
